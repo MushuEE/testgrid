@@ -400,10 +400,6 @@ message AutoBugOptions {
 
   // If True; file issues for the 'Overall' target, even if otherwise invalid.
   bool file_overall = 8;
-
-  // Bypass filing bugs if the Test Group failure ratio > limit
-  // If left at default or 0, failure ratio will not influence bugs
-  float column_failure_ratio_limit = 9;
 }
 
 message HotlistIdFromSource {
@@ -520,6 +516,12 @@ message DashboardTab {
 
   // The URL template to visit when viewing an associated bug.
   LinkTemplate open_bug_template = 17;
+
+  // If the ratio of failed tests to total tests is above this threshold
+  // the tab will be concidered in a BROKEN state and reverted back when
+  // recent columns maintain ratios under the threshold. If left at default (0)
+  // no amount of failures will trigger BROKEN state.
+  float column_failure_ratio_threshold = 18;
 }
 
 // Configuration options for dashboard tab alerts.
